@@ -1,0 +1,85 @@
+# https://github.com/home-assistant/core/blob/dev/homeassistant/components/default_config/manifest.json
+homeassistant:
+  name: Hülben
+  latitude: !secret latitude_home
+  longitude: !secret longitude_home
+  elevation: 713
+  unit_system: metric
+  currency: EUR
+  time_zone: Europe/Berlin
+  country: DE
+  internal_url: !secret internal_url
+  external_url: !secret external_url
+  temperature_unit: C
+  auth_providers:
+    - type: homeassistant
+# Load frontend themes from the themes folder
+frontend:
+  themes: !include_dir_merge_named themes
+automation manual: !include_dir_merge_list automations
+api:
+config:
+scene: !include scenes.yaml
+history:
+  exclude:
+    entities:
+    - sensor.last_boot
+    - zone.home
+    - binary_sensor.updater
+    - http.logon
+    - person.Bettina
+    - person.Peter
+    - person.Florian
+http:
+  ip_ban_enabled: true
+  login_attempts_threshold: 3
+input_boolean:
+input_datetime:
+input_number:
+input_select:
+input_text:
+image:
+logger:
+  default: warning
+  logs:
+    homeassistant.setup: warn
+    # log level for HA core
+    homeassistant.core: warning
+    # log level for MQTT integration
+    homeassistant.components.mqtt: warning
+    # log level for all python scripts
+    homeassistant.components.python_script: warning
+    # log level for the `aiohttp` Python package
+    aiohttp: warning
+    homeassistant.components.device_tracker: warning
+    homeassistant.components.shell_command: debug
+    homeassistant.components.http.ban: warning
+lovelace:
+  dashboards:
+    lovelace-home:
+      title: Dahoim
+      filename: lovelace/home.yaml
+      icon: mdi:home
+      mode: yaml
+      show_in_sidebar: true
+      require_admin: false
+media_source:
+mobile_app:
+my:
+person:
+recorder:
+  purge_keep_days: 7
+  db_url: !secret db_url
+script: !include scripts.yaml
+sensor: !include sensor.yaml
+sun:
+system_health:
+template: !include template.yaml
+timer:
+version:
+zone:
+  - name: Home
+    latitude: !secret latitude_home
+    longitude: !secret longitude_home
+    radius: 100
+    icon: mdi:home%
