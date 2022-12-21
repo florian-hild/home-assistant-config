@@ -1,0 +1,9 @@
+title: Garage
+icon: mdi:garage
+path: garage
+theme: material_dark_green
+cards:
+  - type: markdown
+    title: Lovelace
+    content: >
+      Welcome to your **Lovelace UI**.%

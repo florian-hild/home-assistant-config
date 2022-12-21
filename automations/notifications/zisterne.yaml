@@ -1,0 +1,55 @@
+- alias: Meldung Zisterne voll
+  description: Meldung wenn Zisterne über 90% ist
+  mode: single
+  # trigger:
+  #   - platform: template
+  #     value_template: {{trigger.sensor.wasserstand_zisterne != 'unknown' }}
+  condition:
+    condition: numeric_state
+    entity_id: sensor.wasserstand_zisterne
+    above: 10
+  action:
+    - service: persistent_notification.create
+      data:
+        message: "Zisterne über 90% voll."
+        title: Zisterne Status
+        notification_id: zisterne1
+
+# More examples here:
+# Home Assistant 646
+# Conditions 646
+
+# Documentation about all available conditions.
+
+#       entity_id: sensor.wasserstand_zisterne
+#       above: '10'
+#       for:
+#         hours: 0
+#         minutes: 0
+#         seconds: 10
+#         milliseconds: 0
+#   action:
+#     - service: persistent_notification.create
+#       data:
+#         message: "Zisterne über 90% voll."
+#         title: Zisterne Status
+#         notification_id: zisterne1
+
+  #       - alias: Meldung Zisterne voll
+  # description: Meldung wenn Zisterne über 90% ist
+  # mode: single
+  # trigger:
+  #   - platform: numeric_state
+  #     entity_id: sensor.wasserstand_zisterne
+  #     above: '10'
+  #     for:
+  #       hours: 0
+  #       minutes: 0
+  #       seconds: 10
+  #       milliseconds: 0
+  # action:
+  #   - service: persistent_notification.create
+  #     data:
+  #       message: "Zisterne über 90% voll."
+  #       title: Zisterne Status
+  #       notification_id: zisterne1%

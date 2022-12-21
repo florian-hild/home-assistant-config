@@ -1,0 +1,10 @@
+title: Hülben
+preload_cards:
+  - picture-glance
+kiosk_mode:
+  non_admin_settings:
+    hide_sidebar: true
+views:
+  - !include home/haus.yaml
+  - !include home/garage.yaml
+  - !include home/garten.yaml

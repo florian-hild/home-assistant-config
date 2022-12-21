@@ -1,0 +1,27 @@
+# ds18b20
+# Installation:
+# Just add integration in the Web GUI
+# Should not anymore in the Config file.
+# platform: onewire
+# names:
+#   sensor.28_01193cda254a_temperature: Temperatur Zisterne
+
+# jsn-sr04t
+# Ultraschall Sensor
+# Wird über Python Script aufgerufen
+# - platform: command_line
+#   name: water
+#   command: 'python3 -c "print("30")"'
+#   # /opt/homeassistant/bin/python3
+#   unit_of_measurement: "%"
+#   value_template: '{{ value }}'
+#   scan_interval: 10
+#   command_timeout: 60
+# - platform: command_line
+#   command: python3 -c "import requests; print(requests.get('https://pypi.python.org/pypi/homeassistant/json').json()['info']['version'])"
+#   name: HA release
+#   scan_interval: 10
+# - platform: command_line
+#   command: "which python; which python3"
+#   name: Test
+#   scan_interval: 10%

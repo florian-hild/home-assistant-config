@@ -1,0 +1,4 @@
+sensor:
+  - name: "Wasserstand Zisterne"
+    unit_of_measurement: "%"
+    state: "{{ is_state('value', 'unknown') }}"
