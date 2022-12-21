@@ -1,0 +1,31 @@
+# Generic ignores
+*.log
+*.log.*
+*.db
+*.db-shm
+*.db-wal
+*.pyc
+._*
+__pycache__
+*DS_Store
+
+# Directory (contents) ignores
+.cloud
+.storage
+deps
+# Build-in blueprints ignores
+blueprints/*/homeassistant
+www/test*
+
+# Specific file ignores
+core
+image
+ip_bans.yaml
+secrets.yaml
+secrets.yml
+.HA_VERSION
+
+# Ignore files created by IDE's
+.vscode
+.theia
+.Trash*
