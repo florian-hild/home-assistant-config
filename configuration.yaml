@@ -19,6 +19,7 @@ frontend:
 automation manual: !include_dir_merge_list automations
 api:
 config:
+energy:
 scene: !include scenes.yaml
 history:
   exclude:
@@ -32,7 +33,7 @@ history:
     - person.Florian
 http:
   ip_ban_enabled: true
-  login_attempts_threshold: 3
+  login_attempts_threshold: 4
 input_boolean:
 input_datetime:
 input_number:
@@ -41,19 +42,6 @@ input_text:
 image:
 logger:
   default: warning
-  logs:
-    homeassistant.setup: warn
-    # log level for HA core
-    homeassistant.core: warning
-    # log level for MQTT integration
-    homeassistant.components.mqtt: warning
-    # log level for all python scripts
-    homeassistant.components.python_script: warning
-    # log level for the `aiohttp` Python package
-    aiohttp: warning
-    homeassistant.components.device_tracker: warning
-    homeassistant.components.shell_command: debug
-    homeassistant.components.http.ban: warning
 lovelace:
   dashboards:
     lovelace-home:
