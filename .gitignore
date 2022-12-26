@@ -16,6 +16,8 @@ deps
 # Build-in blueprints ignores
 blueprints/*/homeassistant
 www/test*
+ssl
+sql
 
 # Specific file ignores
 core
