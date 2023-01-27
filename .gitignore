@@ -18,6 +18,7 @@ blueprints/*/homeassistant
 www/test*
 ssl
 sql
+external
 
 # Specific file ignores
 core
