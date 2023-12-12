@@ -1,9 +1,0 @@
-title: Haus
-icon: mdi:home-assistant
-path: haus
-# theme: material_dark_green
-cards:
-  - type: markdown
-    title: Lovelace
-    content: >
-      Welcome to your **Lovelace UI**.%

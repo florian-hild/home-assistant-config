@@ -1,0 +1,16 @@
+sensor:
+  - name: "Gesamtverbrauch"
+    # unique_id: energie.gesammtverbrauch
+    unit_of_measurement: "kWh"
+    #device_class: power
+    state: >
+      {{ (states('sensor.total_imported_energy')|float - states('sensor.total_exported_energy')|float) + (states('sensor.total_pv_generation')|float - states('sensor.total_battery_charge')|float) + states('sensor.total_battery_discharge')|float }}
+
+# Total imported energy = Aus Netz
+# Total exported energy = Ins Netz eingespeist
+# Total PV generation = Wie viel PV generiert hat
+# Total battery charge
+# Total battery discharge
+
+# (sensor.total_imported_energy - sensor.total_exported_energy) + (sensor.total_pv_generation - sensor.total_battery_charge) + sensor.total_battery_discharge = Gesammt Verbrauch
+# (sensor.daily_imported_energy - sensor.daily_exported_energy) + (sensor.daily_pv_generation - sensor.daily_battery_charge) + sensor.daily_battery_discharge = Gesammt Verbrauch Heute
