@@ -13,12 +13,14 @@ homeassistant:
   temperature_unit: C
   auth_providers:
     - type: homeassistant
+  packages: !include_dir_named integrations
 # Load frontend themes from the themes folder
 frontend:
   themes: !include_dir_merge_named themes
 automation manual: !include_dir_merge_list automations
 api:
 config:
+# cloud:
 energy:
 scene: !include scenes.yaml
 history:
@@ -39,32 +41,87 @@ input_datetime:
 input_number:
 input_select:
 input_text:
-image:
 logger:
   default: warning
+  logs:
+    homeassistant.core: warning
+    homeassistant.setup: warning
+    homeassistant.bootstrap: warning
+    homeassistant.util.json: warning
+    homeassistant.components.network.network: warning
+    homeassistant.loader: warning
+    homeassistant.helpers.restore_state: warning
+    homeassistant.components.http: warning
+    homeassistant.components.recorder: warning
+    botocore.hooks: warning
+    homeassistant.components.scene: warning
+    homeassistant.components.sun: warning
+    homeassistant.components.notify: warning
+    homeassistant.components.websocket_api.http.connection: warning
+    homeassistant.components.automation: warning
+    homeassistant.helpers.event: warning
+    # sungrow integration
+    pymodbus.client: warning
+    # sungrow integration
+    homeassistant.components.modbus: warning
 lovelace:
+  mode: yaml
+  resources:
+    - url: /local/mini-graph-card-bundle.js?v=0.11.0
+      type: module
+    - url: /local/mushroom.js
+      type: module
+    - url: /local/apexcharts-card.js?v=2.0.4
+      type: module
   dashboards:
-    lovelace-home:
-      title: Dahoim
-      filename: lovelace/home.yaml
-      icon: mdi:home
+    dashboard-01:
+      title: PV-Anlage
       mode: yaml
+      filename: dashboards/pv_dashboard.yaml
+      icon: mdi:solar-power-variant
       show_in_sidebar: true
       require_admin: false
+    dashboard-02:
+      title: PV-Sungrow-default
+      mode: yaml
+      filename: dashboards/pv_sungrow_default.yaml
+      icon: mdi:solar-power-variant
+      show_in_sidebar: true
+      require_admin: true
+    dashboard-03:
+      title: PV-Anlage-wip
+      mode: yaml
+      filename: dashboards/pv_dashboard_wip.yaml
+      icon: mdi:solar-power-variant
+      show_in_sidebar: true
+      require_admin: true
+    # dashboard-haus:
+    #   title: Haus
+    #   filename: dashboards/haus_dashboard.yaml
+    #   icon: mdi:home
+    #   mode: yaml
+    #   show_in_sidebar: true
+    #   require_admin: false
+    # dashboard-garten:
+    #   title: Garten / Garage
+    #   filename: dashboards/garten_dashboard.yaml
+    #   icon: mdi:flower
+    #   mode: yaml
+    #   show_in_sidebar: true
+    #   require_admin: false
 media_source:
 mobile_app:
 my:
 person:
 recorder:
-  purge_keep_days: 7
+  purge_keep_days: 1095
   db_url: !secret db_url
 script: !include scripts.yaml
 sensor: !include sensor.yaml
 sun:
 system_health:
-template: !include template.yaml
+template: !include_dir_merge_list templates
 timer:
-version:
 zone:
   - name: Home
     latitude: !secret latitude_home
