@@ -1,0 +1,6 @@
+title: Solaranlage
+views:
+  - !include views/pv_info_wip.yaml
+  - !include views/pv_info_mobile_wip.yaml
+
+

@@ -1,0 +1,139 @@
+title: Info WIP
+# type: sidebar
+theme: Backend-selected
+badges: []
+cards:
+  # - square: false
+  #   columns: 2
+  #   type: grid
+  #   cards:
+  #     - type: vertical-stack
+  #       cards:
+  #         - name: PV-Ertrag Verlauf
+  #           type: custom:mini-graph-card
+  #           entities:
+  #             - entity: sensor.daily_pv_generation
+  #           hours_to_show: 730 # = 1 Woche
+  #           aggregate_func: max
+  #           group_by: date
+  #           show:
+  #             graph: bar
+  #             labels: true
+  #           color_thresholds:
+  #             - value: 2
+  #               color: red
+  #             - value: 4
+  #               color: orange
+  #             - value: 6
+  #               color: yellow
+  #             - value: 15
+  #               color: green
+  # - square: true
+  #   columns: 3
+  #   type: grid
+  #   cards:
+  #     - title: Leistung
+  #       type: entities
+  #       entities:
+  #         - name: Ladeleistung
+  #           entity: sensor.load_power
+  #         - name: Wirkleistung
+  #           entity: sensor.meter_active_power
+  #         - name: Gleichstromleistung gesammt
+  #           entity: sensor.total_dc_power
+  #         - name: Exportierte Leistung
+  #           entity: sensor.export_power
+  #         - name: Importierte Leistung
+  #           entity: sensor.import_power
+  #         - name: Batterieladeleistung
+  #           entity: sensor.battery_charging_power
+  #         - name: Batterieentladeleistung
+  #           entity: sensor.battery_discharging_power
+  #     - title: Netz / Last
+  #       type: entities
+  #       entities:
+  #         - name: Ladeleistung
+  #           entity: sensor.load_power
+  #         - name: Spannung Phase A
+  #           entity: sensor.phase_a_voltage
+  #         - name: Strom Phase A
+  #           entity: sensor.phase_a_current
+  #         - name: Leistung Phase A
+  #           entity: sensor.phase_a_power
+  #         - name: Spannung Pase B
+  #           entity: sensor.phase_b_voltage
+  #         - name: Strom Phase B
+  #           entity: sensor.phase_b_current
+  #         - name: Leistung Phase B
+  #           entity: sensor.phase_b_power
+  #         - name: Spannung Pase C
+  #           entity: sensor.phase_c_voltage
+  #         - name: Strom Phase C
+  #           entity: sensor.phase_c_current
+  #         - name: Leistung Phase C
+  #           entity: sensor.phase_c_power
+  #         - name: Wirkleistung Phase A
+  #           entity: sensor.meter_phase_a_active_power
+  #         - name: Wirkleistung Phase B
+  #           entity: sensor.meter_phase_b_active_power
+  #         - name: Wirkleistung Phase C
+  #           entity: sensor.meter_phase_c_active_power
+  #         - name: Backup Leisung gesammt
+  #           entity: sensor.total_backup_power
+  #         - name: Backup Leisung Phase A
+  #           entity: sensor.backup_phase_a_power
+  #         - name: Backup Leisung Phase B
+  #           entity: sensor.backup_phase_b_power
+  #         - name: Backup Leisung Phase C
+  #           entity: sensor.backup_phase_c_power
+  #         - name: Netzfrequenz
+  #           entity: sensor.grid_frequency
+  #     - title: PV-Ertrag
+  #       type: entities
+  #       entities:
+  #         - name: Gleichstromleistung gesammt
+  #           entity: sensor.total_dc_power
+  #         - name: Leistung MPPT 1
+  #           entity: sensor.mppt1_power
+  #         - name: Spannung MPPT 1
+  #           entity: sensor.mppt1_voltage
+  #         - name: Strom MPPT 1
+  #           entity: sensor.mppt1_current
+  #         - name: Leistung MPPT 2
+  #           entity: sensor.mppt2_power
+  #         - name: Spannung MPPT 2
+  #           entity: sensor.mppt2_voltage
+  #         - name: trom MPPT 2
+  #           entity: sensor.mppt2_current
+    - title: Leistungsverteilung
+      type: custom:mini-graph-card
+      entities:
+        - name: PV-Ertrag
+          entity: sensor.total_dc_power
+        - name: Gesammtverbrauch
+          entity: sensor.load_power
+        - name: Netzeinspeisung
+          entity: sensor.export_power
+        - name: Netzverbrauch
+          entity: sensor.import_power
+        - name: Batterie
+          entity: sensor.signed_battery_power
+    - type: custom:apexcharts-card
+      header:
+        show: true
+        title: test
+        show_states: false
+        colorize_states: true
+      graph_span: 12h
+      all_series_config:
+        stroke_width: 1
+        opacity: 1
+        show:
+          in_brush: true
+      experimental:
+        brush: true
+      series:
+        - name: load power
+          entity: sensor.load_power
+        - name: signed battery power
+          entity: sensor.signed_battery_power

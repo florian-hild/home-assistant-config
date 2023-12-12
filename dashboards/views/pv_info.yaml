@@ -1,0 +1,51 @@
+theme: Backend-selected
+title: Info
+icon: ''
+badges: []
+cards:
+  - title: Energieverteilung heute
+    type: energy-distribution
+    link_dashboard: true
+  - name: Aktueller Batterieladestand
+    type: gauge
+    entity: sensor.battery_level
+    needle: true
+    min: 0
+    max: 100
+    segments:
+      - from: 0
+        color: red
+      - from: 30
+        color: orange
+      - from: 70
+        color: green
+  - title: Leistungsverteilung
+    type: statistics-graph
+    period: 5minute
+    days_to_show: 0.5
+    stat_types: mean
+    chart_type: line
+    entities:
+      - name: PV-Ertrag
+        entity: sensor.total_dc_power
+      - name: Gesammtverbrauch
+        entity: sensor.load_power
+      - name: Netzeinspeisung
+        entity: sensor.export_power
+      - name: Netzverbrauch
+        entity: sensor.import_power
+      - name: Batterie
+        entity: sensor.signed_battery_power
+  - title: Energiedaten insgesammt
+    type: entities
+    entities:
+      - name: Energieverbrauch
+        entity: sensor.total_imported_energy
+      - name: Solarenergie Gewinnung
+        entity: sensor.total_pv_generation
+      - name: Netzeinspeisung
+        entity: sensor.total_exported_energy
+      - name: Batterieladung
+        entity: sensor.total_battery_charge
+      - name: Batterieentladung
+        entity: sensor.total_battery_discharge
