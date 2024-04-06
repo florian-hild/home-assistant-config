@@ -14,8 +14,8 @@ __pycache__
 .storage
 deps
 # Build-in blueprints ignores
-blueprints/*/homeassistant
-www/test*
+*/blueprints/*/homeassistant
+*/www/test*
 ssl
 sql
 external
