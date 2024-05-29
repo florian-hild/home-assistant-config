@@ -1,0 +1,4 @@
+title: Garten
+views:
+  - !include views/garden_zisterne.yaml
+

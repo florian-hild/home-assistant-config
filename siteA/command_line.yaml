@@ -1,0 +1,13 @@
+# Ultraschall Sensor jsn-sr04t
+- sensor:
+    name: water_tank_level
+    command: 'python3 /config/scripts/water_tank_level.py'
+    scan_interval: 10
+    unit_of_measurement: "%"
+    value_template: >
+      {% if value|is_number %}
+        {{ value }}
+      {% else %}
+        error
+      {% endif %}
+
