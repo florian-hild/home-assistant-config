@@ -18,8 +18,8 @@ import argparse
 import statistics
 import RPi.GPIO as GPIO
 
-water_tank_heigh_max_cm = 100
-sensor_offset_cm = 10 # Distance from sensor to water_tank_heigh_max_cm
+water_tank_heigh_max_cm = 142
+sensor_offset_cm = 0 # Distance from sensor to water_tank_heigh_max_cm
 pin_trigger = 11
 pin_echo = 13
 trigger_pulse_us = 0.00002 # 20 microsec
@@ -71,8 +71,7 @@ def getDistance():
     # Range 20cm - 600cm
     log.error("Distance %.1f cm out of range. (Range: 20cm - 600cm)", distance)
 
-    return 20
-    # return None
+    return None
 
 def round_down_to_nearest_ten(value):
   # Calculate the nearest lower multiple of 10
@@ -156,6 +155,7 @@ def main():
 
       if count == failed_attempts:
         GPIO.cleanup()
+        print("-1")
         sys.exit(0)
 
       time.sleep(0.5)
