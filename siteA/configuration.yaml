@@ -18,24 +18,21 @@ homeassistant:
 frontend:
   themes: !include_dir_merge_named themes
 automation manual: !include_dir_merge_list automations
+notify: !include notify.yaml
 api:
 config:
 # cloud:
 energy:
 scene: !include scenes.yaml
 history:
-  exclude:
-    entities:
-    - sensor.last_boot
-    - zone.home
-    - binary_sensor.updater
-    - http.logon
-    - person.Bettina
-    - person.Peter
-    - person.Florian
 http:
   ip_ban_enabled: true
   login_attempts_threshold: 4
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 11.0.0.0/16 # Docker Subnet
+    - 192.168.178.0/24
+    - 10.0.30.0/24
 input_boolean:
 input_datetime:
 input_number:
@@ -44,6 +41,7 @@ input_text:
 logger:
   default: warning
   logs:
+    hacs: debug
     homeassistant.core: warning
     homeassistant.setup: warning
     homeassistant.bootstrap: warning
@@ -64,58 +62,7 @@ logger:
     pymodbus.client: warning
     # sungrow integration
     homeassistant.components.modbus: warning
-lovelace:
-  mode: yaml
-  resources:
-    - url: /local/mini-graph-card-bundle.js?v=0.11.0
-      type: module
-    - url: /local/mushroom.js
-      type: module
-    - url: /local/apexcharts-card.js?v=2.0.4
-      type: module
-  dashboards:
-    dashboard-01:
-      title: PV-Anlage
-      mode: yaml
-      filename: dashboards/pv_dashboard.yaml
-      icon: mdi:solar-power-variant
-      show_in_sidebar: true
-      require_admin: false
-    dashboard-02:
-      title: PV-Sungrow-default
-      mode: yaml
-      filename: dashboards/pv_sungrow_default.yaml
-      icon: mdi:solar-power-variant
-      show_in_sidebar: true
-      require_admin: true
-    dashboard-03:
-      title: PV-Anlage-wip
-      mode: yaml
-      filename: dashboards/pv_dashboard_wip.yaml
-      icon: mdi:solar-power-variant
-      show_in_sidebar: true
-      require_admin: true
-    dashboard-04:
-      title: Garten
-      mode: yaml
-      filename: dashboards/garden_dashboard.yaml
-      icon: mdi:shovel
-      show_in_sidebar: true
-      require_admin: false
-    # dashboard-haus:
-    #   title: Haus
-    #   filename: dashboards/haus_dashboard.yaml
-    #   icon: mdi:home
-    #   mode: yaml
-    #   show_in_sidebar: true
-    #   require_admin: false
-    # dashboard-garten:
-    #   title: Garten / Garage
-    #   filename: dashboards/garten_dashboard.yaml
-    #   icon: mdi:flower
-    #   mode: yaml
-    #   show_in_sidebar: true
-    #   require_admin: false
+logbook:
 media_source:
 mobile_app:
 my:
@@ -123,8 +70,17 @@ person:
 recorder:
   purge_keep_days: 1095
   db_url: !secret db_url
+  exclude:
+    entities:
+    - sensor.last_boot
+    - zone.home
+    - binary_sensor.updater
+    - http.logon
+    - person.Bettina
+    - person.Peter
+    - person.Florian
 script: !include scripts.yaml
-command_line: !include command_line.yaml
+# command_line: !include command_line.yaml
 sun:
 system_health:
 template: !include_dir_merge_list templates

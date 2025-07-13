@@ -2,7 +2,7 @@
 - sensor:
     name: water_tank_level
     command: 'python3 /config/scripts/water_tank_level.py'
-    scan_interval: 10
+    scan_interval: 300
     unit_of_measurement: "%"
     value_template: >
       {% if value|is_number %}
@@ -10,4 +10,3 @@
       {% else %}
         error
       {% endif %}
-

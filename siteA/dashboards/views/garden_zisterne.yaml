@@ -19,6 +19,15 @@ cards:
       action: more-info
     state_image:
       0: local/watertank/zisterne_000.png
+      1: local/watertank/zisterne_000.png
+      2: local/watertank/zisterne_000.png
+      3: local/watertank/zisterne_000.png
+      4: local/watertank/zisterne_000.png
+      5: local/watertank/zisterne_000.png
+      6: local/watertank/zisterne_000.png
+      7: local/watertank/zisterne_000.png
+      8: local/watertank/zisterne_000.png
+      9: local/watertank/zisterne_000.png
       10: local/watertank/zisterne_010.png
       20: local/watertank/zisterne_020.png
       30: local/watertank/zisterne_030.png

@@ -1,0 +1,82 @@
+- id: '1717282406441'
+  alias: TEST01
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.water_tank_level
+    to: '100'
+  condition: []
+  action:
+  - service: notify.mobile_app_myphone
+    metadata: {}
+    data:
+      message: Test
+      title: TEST
+  mode: single
+- id: '1717282883426'
+  alias: Zisterne voll
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id:
+    - sensor.water_tank_level
+    above: 90
+  condition: []
+  action:
+  - service: notify.mobile_app_myphone
+    metadata: {}
+    data:
+      message: Zisterne über 90% voll
+      title: Wasserstand Zisterne
+  mode: single
+- id: '1717282975923'
+  alias: Neue Automatisierung
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id:
+    - sensor.water_tank_level
+    above: 90
+  condition: []
+  action:
+  - service: notify.mobile_app_myphone
+    metadata: {}
+    data:
+      message: Test
+  mode: single
+- id: '1717283244395'
+  alias: Test
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id:
+    - sensor.water_tank_level
+    above: 90
+  condition: []
+  action:
+  - service: notify.mobile_app_myphone
+    metadata: {}
+    data:
+      message: TEST
+      title: TEST Title
+  mode: single
+- id: '1717283995198'
+  alias: Neue Automatisierung
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id:
+    - sensor.water_tank_level
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 3
+    below: 10
+  condition: []
+  action:
+  - service: notify.mobile_app_myphone
+    data:
+      message: MSG
+      title: TITLE
+  mode: single

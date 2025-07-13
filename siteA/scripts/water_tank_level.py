@@ -18,13 +18,14 @@ import argparse
 import statistics
 import RPi.GPIO as GPIO
 
-water_tank_heigh_max_cm = 142
+water_tank_heigh_max_cm = 20
 sensor_offset_cm = 0 # Distance from sensor to water_tank_heigh_max_cm
 pin_trigger = 11
 pin_echo = 13
 trigger_pulse_us = 0.00002 # 20 microsec
 values = []
 failed_attempts = 5
+max_duration_ms = 5000
 
 
 def getDistance():
@@ -45,7 +46,11 @@ def getDistance():
 
   log.debug('Waiting for end (low) pulse from echo pin ...')
   while GPIO.input(pin_echo) == 1:
-    pass
+    if (round(time.time() * 1000000) - pulse_start) > max_duration_ms:
+      log.error("Timeout %s ms to get end (low) pulse from echo pin", max_duration_ms)
+      return None
+    else:
+      pass
   log.debug("Current echo pin (%i) state: %i", pin_echo, GPIO.input(pin_echo))
   pulse_end = round(time.time() * 1000000) # time in microsec
   log.debug("Set end pulse to %s", pulse_end)
