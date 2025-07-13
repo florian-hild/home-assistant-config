@@ -49,3 +49,23 @@ cards:
         entity: sensor.total_battery_charge
       - name: Batterieentladung
         entity: sensor.total_battery_discharge
+  - title: Temperatursensor (extern)
+    type: entities
+    entities:
+      - name: Temperatur
+        entity: sensor.garage_aqara_temp_01_temperatur
+      - name: Luftfeuchtigkeit
+        entity: sensor.garage_aqara_temp_01_luftfeuchtigkeit
+  - title: Temperatur PV-Anlage
+    type: statistics-graph
+    period: 5minute
+    days_to_show: 0.5
+    stat_types: mean
+    chart_type: line
+    entities:
+      - name: Externer Sensor
+        entity: sensor.garage_aqara_temp_01_temperatur
+      - name: Wechselrichter
+        entity: sensor.inverter_temperature
+      - name: Batterie
+        entity: sensor.battery_temperature
