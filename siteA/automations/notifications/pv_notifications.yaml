@@ -1,0 +1,34 @@
+- alias: Notification pv battery level
+  mode: single
+  description: Notification if pv battery level empty or full
+  trigger:
+    - entity_id: sensor.battery_level
+      platform: numeric_state
+      below: 20
+      for: "00:00:01"
+    - entity_id: sensor.battery_level
+      platform: numeric_state
+      above: 80
+      for: "00:00:01"
+  action:
+    - service: notify.ALL_MOBILE_DEVICES
+      data:
+        title: PV Speicherstand
+        message: >-
+          "PV Speicherstand: {{ states('sensor.battery_level') }} %"
+- alias: Notification pv temperature
+  mode: single
+  description: Notification if pv battery or inverter temperature to high
+  trigger:
+    - entity_id:
+        - sensor.battery_temperature
+        - sensor.inverter_temperature
+      platform: numeric_state
+      above: 50
+      for: "00:03:00"
+  action:
+    - service: notify.ALL_MOBILE_DEVICES
+      data:
+        title: PV Temperatur
+        message: >-
+          "PV Temperatur: Inverter={{ states('sensor.battery_level') }} °C Batterie={{ states('sensor.battery_level') }} °C"

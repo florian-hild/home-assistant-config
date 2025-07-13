@@ -1,0 +1,8 @@
+- name: ALL_MOBILE_DEVICES
+  platform: group
+  services:
+    - service: mobile_app_myphone
+    # - service: mobile_app_bettina_phone
+    - service: mobile_app_bettina
+    # - service: mobile_app_peter_phone
+    - service: mobile_app_pph
