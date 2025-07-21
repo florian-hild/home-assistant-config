@@ -1,72 +1,16 @@
-# https://github.com/home-assistant/core/blob/dev/homeassistant/components/default_config/manifest.json
-homeassistant:
-  name: Hülben
-  latitude: !secret latitude_home
-  longitude: !secret longitude_home
-  elevation: 713
-  unit_system: metric
-  currency: EUR
-  time_zone: Europe/Berlin
-  country: DE
-  internal_url: !secret internal_url
-  external_url: !secret external_url
-  temperature_unit: C
-  auth_providers:
-    - type: homeassistant
-  packages: !include_dir_named integrations
+# Loads default set of integrations. Do not remove.
+default_config:
+
+
 # Load frontend themes from the themes folder
 frontend:
   themes: !include_dir_merge_named themes
-automation manual: !include_dir_merge_list automations
-notify: !include notify.yaml
-api:
-config:
-# cloud:
-energy:
+
+automation: !include automations.yaml
+script: !include scripts.yaml
 scene: !include scenes.yaml
-history:
-http:
-  ip_ban_enabled: true
-  login_attempts_threshold: 4
-  use_x_forwarded_for: true
-  trusted_proxies:
-    - 11.0.0.0/16 # Docker Subnet
-    - 192.168.178.0/24
-    - 10.0.30.0/24
-input_boolean:
-input_datetime:
-input_number:
-input_select:
-input_text:
-logger:
-  default: warning
-  logs:
-    hacs: debug
-    homeassistant.core: warning
-    homeassistant.setup: warning
-    homeassistant.bootstrap: warning
-    homeassistant.util.json: warning
-    homeassistant.components.network.network: warning
-    homeassistant.loader: warning
-    homeassistant.helpers.restore_state: warning
-    homeassistant.components.http: warning
-    homeassistant.components.recorder: warning
-    botocore.hooks: warning
-    homeassistant.components.scene: warning
-    homeassistant.components.sun: warning
-    homeassistant.components.notify: warning
-    homeassistant.components.websocket_api.http.connection: warning
-    homeassistant.components.automation: warning
-    homeassistant.helpers.event: warning
-    # sungrow integration
-    pymodbus.client: warning
-    # sungrow integration
-    homeassistant.components.modbus: warning
-logbook:
-media_source:
-mobile_app:
-my:
-person:
+notify: !include notify.yaml
+
 recorder:
   purge_keep_days: 1095
   db_url: !secret db_url
@@ -79,15 +23,15 @@ recorder:
     - person.Bettina
     - person.Peter
     - person.Florian
-script: !include scripts.yaml
-# command_line: !include command_line.yaml
-sun:
-system_health:
-template: !include_dir_merge_list templates
-timer:
-zone:
-  - name: Home
-    latitude: !secret latitude_home
-    longitude: !secret longitude_home
-    radius: 100
-    icon: mdi:home%
+
+homeassistant:
+  packages: !include_dir_named packages
+
+http:
+  ip_ban_enabled: true
+  login_attempts_threshold: 4
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 11.0.0.0/16 # Docker Subnet
+    - 192.168.178.0/24
+    - 10.0.30.0/24
